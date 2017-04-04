@@ -758,6 +758,17 @@ The `deleteTodo` takes the todo, passed from the child Component of `Todo` up th
 In `containers/TodosContainer.js`:
 
 ```js
+updateTodo(todoBody) {
+    var todoId = this.state.editingTodoId
+    function isUpdatedTodo(todo) {
+        return todo._id === todoId;
+    }
+    TodoModel.update(todoId, todoBody).then((res) => {
+        let todos = this.state.todos
+        todos.find(isUpdatedTodo).body = todoBody
+        this.setState({todos: todos, editingTodoId: null, editing: null})
+    })
+}
 editTodo(todo){
   this.setState({
     editingTodoId: todo._id
@@ -785,6 +796,7 @@ In the `components/Todos.js`, add `editingTodoId` and `onEditTodo` to `<Todo>` p
 
 
 ```js
+//....
 let todos = this.props.todos.map( (todo) => {
   return (
     <Todo
@@ -793,22 +805,19 @@ let todos = this.props.todos.map( (todo) => {
       editingTodoId={this.props.editingTodoId}
       onEditTodo={this.props.onEditTodo}
       onDeleteTodo={this.props.onDeleteTodo}
+      onUpdateTodo={this.props.onUpdateTodo}
     />
   )
 })
+//...
 ```
 
 <!-- Todo changes -->
-In `components/Todo.js`
+In `components/Todo.js` We need to use the method:
 
 ```js
 render(){
     if (this.props.editingTodoId === this.props.todo._id){
-      //if we see this console.log, we know that Todo-props are being
-      // passed into TodosContainer, and being set as the
-      // TodosContainer-state, and then trickling down as props to
-      // the Todo component. WHATttttt argh
-      // this is broken down below
       console.log(`${this.props.todo.body} is being edited`);
     }
     return(
@@ -920,7 +929,6 @@ class TodoForm extends Component {
 
 export default TodoForm
 
-
 ```
 
 ```js
@@ -953,9 +961,7 @@ let todos = this.props.todos.map( (todo) => {
 //...
 ```
 
-### Getting Started with implementing update:
-
-In `models/Todo.js` add:
+In `models/Todo.js` add our method:
 
 ```js
 static update(todoId, todoBody) {
@@ -970,20 +976,6 @@ Think back to what we did for the other CRUD actions--we define some axios behav
 
 Then we make our way down from `TodosContainer` to `Todos` to `Todo`, with `state` trickling down as `props`.
 
-Refer again to [the example here](https://github.com/ga-wdi-exercises/react-todo/tree/master/src).
+## Conclusion
 
-#### Reusability
-
-We can use something like partials in React.
-
-[General Todo Form](https://github.com/ga-wdi-exercises/react-todo/blob/master/src/components/TodoForm.js)
-
-[Create Todo Form](https://github.com/ga-wdi-exercises/react-todo/blob/master/src/components/CreateTodoForm.js)
-
-Check out how a TodoForm is composed within the CreateTodoForm!
-
-## Updating Completion Status
-
-You'll just need to make a simple modification to your `fetchData()` method to sort the to-dos.
-
-You'll then need to add UI: a button or some element with an `onClick` that calls a function in `TodosContainer` that **toggles** completeness.
+We've learned how to do full CRUD for a basic todo app here. We've seen in particular how props can be trickled down through parent and child components to make a very modular app. We've also been introduced to the magic of axios for network calls from our frontend.
