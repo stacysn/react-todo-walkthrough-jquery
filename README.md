@@ -54,3 +54,5 @@ Alright it's time to build! We're going to be building this application from scr
 [Sprint 5: Deleting Todos](sprints/Sprint5.md)
 
 [Sprint 6: Edit/Update a Todo](sprints/Sprint6.md)
+
+![list](https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif)
