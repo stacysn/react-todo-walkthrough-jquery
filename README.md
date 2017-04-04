@@ -485,7 +485,7 @@ In `src/components/Todos.js`:
 In `src/components/Todo.js`:
 
 ```js
-<p data-todos-index={this.props.todo.id}>
+<p data-todos-index={this.props.todo._id}>
   <span>{this.props.todo.body}</span>
 </p>
 ```
@@ -609,12 +609,16 @@ In `src/containers/TodosContainer.js`:
 import CreateTodoForm from '../components/CreateTodoForm'
 
 // adding rest of code to container, more code above
-createTodo(todo){
-  let newTodo = {body: todo, completed: false}
-  TodoModel.create(newTodo).then( (res) => {
-    let todos = res.data
-    this.setState({todos})
-  })
+createTodo(todo) {
+    let newTodo = {
+        body: todo,
+        completed: false
+    }
+    TodoModel.create(newTodo).then((res) => {
+        let todos = this.state.todos
+        let newTodos = todos.push(res.data)
+        this.setState({newTodos})
+    })
 }
 render(){
   return (
@@ -635,7 +639,7 @@ In the actual `createTodo` function. We can see that we construct everything we 
 
 ```js
 static create(todo) {
-  let request = axios.post("http://localhost:4000/todos", todo)
+  let request = axios.post("https://super-crud.herokuapp.com/todos", todo)
   return request
 }
 ```
@@ -704,7 +708,7 @@ We've added a span with an `X` in it. When it gets clicked it invokes the `onDel
 let todos = this.props.todos.map( (todo) => {
   return (
     <Todo
-      key={todo.id}
+      key={todo._id}
       todo={todo}
       onDeleteTodo={this.props.onDeleteTodo}/>
   )
@@ -714,11 +718,13 @@ let todos = this.props.todos.map( (todo) => {
 Looks like it's not defined here either but passed yet again from a parent container. Finally in the `src/components/TodosContainer.js`:
 
 ```js
-deleteTodo(todo){
-  TodoModel.delete(todo).then( (res)=>{
-    let todos = res.data
-    this.setState({todos})
-  })
+deleteTodo(todo) {
+    TodoModel.delete(todo).then((res) => {
+        let todos = this.state.todos.filter(function(todo) {
+          return todo._id !== res.data._id
+        });
+        this.setState({todos})
+    })
 }
 render(){
   return (
@@ -738,7 +744,7 @@ Before we talk about the above code, lets look at what delete looks like in our 
 
 ```js
 static delete(todo){
-  let request = axios.delete(`http://localhost:4000/todos/${todo.id}`)
+  let request = axios.delete(`https://super-crud.herokuapp.com/todos/${todo._id}`)
   return request
 }
 ```
@@ -754,7 +760,7 @@ In `containers/TodosContainer.js`:
 ```js
 editTodo(todo){
   this.setState({
-    editingTodoId: todo.id
+    editingTodoId: todo._id
   })
 }
 render(){
