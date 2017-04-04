@@ -7,8 +7,8 @@
 - Pass state from parent components to children as props
 - Pass state from children components to their parents as arguments to functions
 
-## Framing 
-For today, we'll be creating a Todo app in React. 
+## Framing
+For today, we'll be creating a Todo app in React.
 
 We've learned a tremendous amount about object oriented structures for web development. And they were great. With angular, we dabbled a bit with feature-based separation of concerns. React's component model takes that separation further and reduces the potential of tight coupling that often attends object oriented. Think of the FIRST principles:
 
@@ -36,38 +36,25 @@ Ideally, components should be short and condensed.
 
 Because the same input will always produce the same output, components are easily unit testable.
 
-
-## You do - Checkout React Todo 
-Before we can checkout the react todo app, we need to grab up our backend that will serve up our todos:
-
-```bash
-$ git clone git@github.com:sf-wdi-36/todo-crud-api.git
-$ cd todo-crud-api
-$ npm install
-$ nodemon
-```
-
-> This api needs to be served on port 4000 because when we run our react application it defaults to port 3000. Don't forget to seed the server by going to localhost:4000/reset.
-
 ## React Todo
 Alright it's time to build! We're going to be building this application from scratch! It won't be exactly like the repo above, but it'll be pretty close and follow much of the same structure.
 
-> If you get behind, all code written today will be in the lesson plan. The error messages you'll get in terminal and in the chrome dev tools from React are usually very accurate adn helpful, so please utilize them. Please keep questions pertinent to content. We should also note that some of the code snippets will be repetitions to reiterate points of learning. Some of them might just be updates to existing files. Some of them might be brand new content you have to add all of.
+> If you get behind, all code written today will be in the lesson plan. The error messages you'll get in terminal and in the chrome dev tools from React are usually very accurate and helpful, so please utilize them. Please keep questions pertinent to content. We should also note that some of the code snippets will be repetitions to reiterate points of learning. Some of them might just be updates to existing files. Some of them might be brand new content you have to add all of.
 
 ### Getting Started
 
-Now let's create the react app.
+Now let's create the react app. We're going to be using react-router v3 for this, so we will need to install that as well.
 
 ```bash
 $ create-react-app my-react-todo
 $ cd my-react-todo
-$ npm install react-router-dom --save
+$ npm install react-router@3.0.0
 $ npm start
 ```
 
 Now, if we navigate to [`localhost:3000`](http://localhost:3000) we will see the boilerplate create-react-app React application.
 
-### First Step - Hello World 
+### First Step - Hello World
 
 #### Get rid of things we won't use
 
@@ -101,7 +88,7 @@ export default App;
 
 > Hooray for automatic rerendering on save! If we just switch over to our browser we'll automatically see our updates.
 
-### React Router 
+### React Router
 We're going to use React Router today to introduce it as a concept. However, it isn't strictly necessary for this application. We're really just going for exposure here. There's a lot to learn about react router and we'll just be scratching the surface. If you want to dive deeper, checkout [this tutorial](https://github.com/reactjs/react-router-tutorial)
 
 We need React Router in the same way that we needed angular routers. We need a way to link to various urls to components in our application. Because our application will be a SPA, we still want to preserve different application-states via the url. This Todo app's application-states (not to be confused with component state) will just be the root url and a url to all todos(`/` and `/todos`)
@@ -139,14 +126,11 @@ Great, we've defined out routes, but it's not going to do anything because nothi
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { HashRouter } from 'react-router-dom'
+import {Router, browserHistory} from 'react-router'
 import routes from './config/routes.js'
-import App from './App'
 
 ReactDOM.render(
-  <HashRouter>
-    <App/>
-  </HashRouter>,
+  <Router routes={routes} history={browserHistory}/>,
   document.getElementById('root')
 );
 ```
@@ -155,7 +139,7 @@ Great, we should now be able to see hello world show up!
 
 
 
-### A Simple Component 
+### A Simple Component
 Before we add another route, let's change the header to be more applicable and make it its own component.
 
 In `src/App.js`:
@@ -216,7 +200,7 @@ Warning: [react-router] Location "/todos" did not match any routes
 
 This warning makes sense, our `config/routes.js` only has a reference to `'/'` and nothing else. We'll fix that by adding the first parts of our app's main functionality. But before that... let's talk about containers.
 
-### Containers 
+### Containers
 As we first start to write this container, its going to seem like just another component. Remember that  React components should be FIRST: focused, independent, reusable, small, and testable. In order to help keep components slim, a good practice is to move as much of the business logic surrounding a component's state to a container component. We're going to put all that logic in this container. It will start out very similarly to our `Header` component, but end up much more complex.
 
 Let's start by creating a containers folder and then the container file:
@@ -277,7 +261,7 @@ Great everything works!
 
 Everything up to this point, is most of what you need to know about using react for a website NOT using a back end. [Just add css through index.css and you're good to go!](https://gist.github.com/superbuggy/29693beaa19cbc2a9171aba4f373dc32)
 
-### Fetching Data 
+### Fetching Data
 
 React actually isn't as full featured as say AngularJS or BackboneJS. It relies on third party libraries to fetch data. Today, we'll be using a library called [Axios](https://github.com/mzabriskie/axios), a promise based HTTP client for the browser and node. Let's install the module now and also create the folder/file that will contain our database logic:
 
