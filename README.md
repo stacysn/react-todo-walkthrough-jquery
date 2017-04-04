@@ -788,7 +788,7 @@ In the `components/Todos.js`, add `editingTodoId` and `onEditTodo` to `<Todo>` p
 let todos = this.props.todos.map( (todo) => {
   return (
     <Todo
-      key={todo.id}
+      key={todo._id}
       todo={todo}
       editingTodoId={this.props.editingTodoId}
       onEditTodo={this.props.onEditTodo}
@@ -803,7 +803,7 @@ In `components/Todo.js`
 
 ```js
 render(){
-    if (this.props.editingTodoId === this.props.todo.id){
+    if (this.props.editingTodoId === this.props.todo._id){
       //if we see this console.log, we know that Todo-props are being
       // passed into TodosContainer, and being set as the
       // TodosContainer-state, and then trickling down as props to
