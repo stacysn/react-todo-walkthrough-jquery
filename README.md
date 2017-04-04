@@ -879,16 +879,90 @@ return (
 )
 ```
 
-You will then have to both write that component and then import it into `components/Todo.js`. Refer to the file-tree in [the example here](https://github.com/ga-wdi-exercises/react-todo/tree/master/src).
+You will then have to both write that component and then import it into `components/Todo.js`:
+
+```js
+
+//TodoForm.js
+import React, {Component} from 'react'
+
+class TodoForm extends Component {
+  onChange(event) {
+    this.setState({
+      todo: event.target.value
+    })
+  }
+  onSubmit(event){
+    event.preventDefault()
+    var todo = this.state.todo
+    console.log("todo is", todo)
+    this.props.onUpdateTodo(todo)
+    this.setState({
+      todo: ""
+    })
+  }
+  render(){
+    return (
+      <div className='todoForm'>
+        <form onSubmit={e => this.onSubmit(e)}>
+          <input
+            autoFocus={this.props.autoFocus}
+            onChange={e => this.onChange(e)}
+            placeholder='Write a todo here ...'
+            type='text'
+            value={(this.state && this.state.todo) || ''} />
+          <button type='submit'>{this.props.buttonName}</button>
+        </form>
+      </div>
+    )
+  }
+}
+
+export default TodoForm
+
+
+```
+
+```js
+//Todo.js
+//...
+console.log(`${this.props.todo.body} is being edited`);
+return (
+  <TodoForm
+    autoFocus={true}
+    onUpdateTodo={this.props.onUpdateTodo}
+    buttonName="Update Todo!"/>
+)
+//...
+```
+
+```js
+//Todos.js
+let todos = this.props.todos.map( (todo) => {
+  return (
+    <Todo
+      key={todo._id}
+      todo={todo}
+      editingTodoId={this.props.editingTodoId}
+      onEditTodo={this.props.onEditTodo}
+      onDeleteTodo={this.props.onDeleteTodo}
+      onUpdateTodo={this.props.onUpdateTodo}
+    />
+  )
+})
+//...
+```
 
 ### Getting Started with implementing update:
 
 In `models/Todo.js` add:
 
 ```js
-static update(todo){
-  let request = axios.put(`http://localhost:4000/todos/${todo.id}`, {body: todo.body})
-  return request
+static update(todoId, todoBody) {
+    let request = axios.put(`https://super-crud.herokuapp.com/todos/${todoId}`, {
+        body: todoBody
+    })
+    return request
 }
 ```
 
