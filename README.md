@@ -175,7 +175,7 @@ In `src/components/Header.js`:
 
 ```js
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router'
 
 class Header extends Component{
   render(){
@@ -235,10 +235,9 @@ Then we just have to update the routes in `src/config/routes.js`:
 import TodosContainer from '../containers/TodosContainer'
 
 module.exports = (
-  <HashRouter>
-    <Route path='/' component={App}/>
+  <Route path='/' component={App}>
     <Route path='/todos' component={TodosContainer}/>
-  </HashRouter>
+  </Route>
 );
 ```
 
