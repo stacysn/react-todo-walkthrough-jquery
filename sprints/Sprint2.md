@@ -1,17 +1,22 @@
-## Sprint 2: Containers
+## Sprint 2: Containers and Nested Components
 
-As we first start to write this container, its going to seem like just another component. Remember that  React components should be FIRST: focused, independent, reusable, small, and testable. In order to help keep components slim, a good practice is to move as much of the business logic surrounding a component's state to a container component. We're going to put all that logic in this container. It will start out very similarly to our `Header` component, but end up much more complex.
+React components should be FIRST: focused, independent, reusable, small, and testable.
 
-Let's start by creating a containers folder and then the container file:
+In order to help keep components small, a good practice is to move the business logic surrounding a component's state to a container component. This is just a larger component used for organization.
+
+The goal of this sprint is to create a container component to manage the app's list of todos and the logic around them. This component will be what shows when the user is on the `/todos` route.  It will start out very simple like the `Header` component, but it will end up much more complex.
+
+1. Create a `containers` folder and then a file for the Todo container component:
 
 ```bash
 $ mkdir src/containers
 $ touch src/containers/TodosContainer.js
 ```
 
-In `src/containers/TodosContainer.js`:
+2. In the new container component file, create a simple component:
 
 ```js
+// src/containers/TodosContainer.js
 import React, {Component} from 'react'
 
 class TodosContainer extends Component {
@@ -27,10 +32,10 @@ class TodosContainer extends Component {
 export default TodosContainer
 ```
 
-Then we just have to update the routes in `src/config/routes.js`:
+3. Add a `Route` to use the `TodosContainer` component when the user is at the `/todos` url.
 
 ```js
-//...
+// which file does this belong in?
 import TodosContainer from '../containers/TodosContainer'
 
 module.exports = (
@@ -40,7 +45,9 @@ module.exports = (
 );
 ```
 
-If we click on it we should totally see ..... nothing still. But no error now! Because our `/todos` is nested within our `'/'` route, our `App` Component needs to know what to render. We do this by adding one line of code to our `src/App.js`:
+4. Go back to the home page, and click on the link. The warning or error from before should be gone now, since the `/todos` route is defined.
+
+5. Note that the `Route` for `/todos` is nested within the `Route` for `'/'`.  In `src/App.js`, add this line to tell the `App` component what to render when it has this nested relationship through routes:
 
 ```js
 render() {
@@ -53,11 +60,13 @@ render() {
 }
 ```
 
-Great everything works!
+6. Think critically about the code snippet above.  What is `this.props.children`? How is it related to the structure of `Route`s in  `src/config/routes.js`?
 
-### PAUSE!
+### Style Break!
 
-Everything up to this point, is most of what you need to know about using react for a website NOT using a back end. Just add css through index.css and you're good to go! Here's some basic style:
+At this point, you've practiced most of what you need to know about using React for client-side routing when you are NOT using a back end.
+
+1. Take a style break. Add some CSS in `index.css`. Here are some basic styles you can use if you want:
 
 ```css
 body {
