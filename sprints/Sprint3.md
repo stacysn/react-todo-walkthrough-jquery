@@ -1,6 +1,12 @@
 ## Sprint 3: Fetching Data with Axios
 
-React actually isn't as full featured as say AngularJS or BackboneJS. It relies on third party libraries to fetch data. Today, we'll be using a library called [Axios](https://github.com/mzabriskie/axios), a promise based HTTP client for the browser and node. Let's install the module now and also create the folder/file that will contain our database logic:
+React actually isn't as full-featured as some front-end frameworks like AngularJS or BackboneJS.  
+
+React relies on third party libraries to fetch data.
+
+Today, we'll be using a library called [Axios](https://github.com/mzabriskie/axios), a promise-based HTTP client for the browser and node.
+
+1. Install `axios` and create the directory and file that will manage AJAX requests:
 
 ```bash
 $ npm install axios --save
@@ -8,7 +14,10 @@ $ mkdir src/models
 $ touch src/models/Todo.js
 ```
 
-Now in `src/models/Todo.js`, we are going to use our beloved super-crud API endpoint of todos to get some data (you can check out the raw json at https://super-crud.herokuapp.com/todos):
+2. We are going to the super-crud API endpoints for `todos` to get some data. Take a look at the raw json at https://super-crud.herokuapp.com/todos.
+
+
+3. In `src/models/Todo.js`, add the following code:
 
 ```js
 import axios from 'axios'
@@ -23,7 +32,11 @@ class TodoModel {
 export default TodoModel
 ```
 
-The Axios API is awesome! It's pretty intuitive! When we use the `all` method on our `TodoModel`, it will make a get request to our API for all todos. We return the request so that we can chain promises to it.
+
+3. Think critically about the steps in this sprint so far. Are you creating a new database model? Or is this a client-side "model" as in "MVC" or "MVVM"?
+
+
+> The Axios API is awesome! It's pretty intuitive! When we use the `all` method on our `TodoModel`, it will make a get request to our API for all todos. We return the request so that we can chain promises to it.
 
 Note also that `all()` is a static method. What does this mean? A static method can be called without there being an **instance** of the class containing the static method. This will allow us to call `all()` in the following way (without ***instantiating*** the class with new):
 
