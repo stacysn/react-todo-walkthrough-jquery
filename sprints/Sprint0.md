@@ -1,6 +1,6 @@
 ## Sprint 0: Getting Started
 
-Now let's create the react app. We're going to be using react-router v3 for this, so we will need to install that as well.
+Create the React app. We're going to be using `react-router` version 3 for this, so go ahead and install that as well.
 
 ```bash
 $ create-react-app my-react-todo
@@ -9,13 +9,11 @@ $ npm install react-router@3.0.0
 $ npm start
 ```
 
-Now, if we navigate to [`localhost:3000`](http://localhost:3000) we will see the boilerplate create-react-app React application.
+Navigate to [`localhost:3000`](http://localhost:3000) to see the boilerplate `create-react-app` React application.
 
-### First Step - Hello World
+### Step 1: Hello World
 
-#### Get rid of things we won't use
-
-Let's remove the following files from the `src` folder:
+1. Remove files you won't use. Specifically, remove the following files from the `src` folder:
 
 ```bash
 $ rm src/App.css
@@ -23,11 +21,12 @@ $ rm src/App.test.js
 $ rm src/logo.svg
 ```
 
-> you could also remove the favicon, just make sure you remove the reference to it from `index.html` as well
+> You could also remove the favicon; just make sure you remove the reference to it from `index.html` as well.
 
-Then replace the return block inside `src/App.js` with a header of Hello World. The whole file should look like this:
+2. Modify the code inside the `return` block from `src/App.js` so that it returns JSX for a header with the text Hello World. The whole file should look like this:
 
 ```js
+// src/App.js
 import React, { Component } from 'react';
 
 class App extends Component {
@@ -43,4 +42,4 @@ class App extends Component {
 export default App;
 ```
 
-> Hooray for automatic rerendering on save! If we just switch over to our browser we'll automatically see our updates.
+> Hooray for automatic re-rendering when we save files! If you switch over to your browser, you should automatically see your updates.
