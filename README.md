@@ -7,20 +7,29 @@
 - Pass state from parent components to children as props
 - Pass state from children components to their parents as arguments to functions
 
-## Framing
-For today, we'll be creating a Todo app in React.
+## Component-Based Architecture
 
-We've learned a tremendous amount about object oriented structures for web development. And they were great. With angular, we dabbled a bit with feature-based separation of concerns. React's component model takes that separation further and reduces the potential of tight coupling that often attends object oriented. Think of the FIRST principles:
+Today, we'll be creating a Todo app in React.
+
+With Angular, we saw feature-based separation of concerns. React is organized with **components** that separate concerns further and reduce the potential of tight coupling.
+
+When designing components for your app, think of the FIRST principles:
 
 #### Focused
 
-Components should do one thing and do it well. It takes some time for most developers coming from an OOP background to adjust to React's component-based architecture. At first, a dev from an OOP background may pack too much information into a component. This is a fine starting point, but as you progress you will get a better sense of how to minimize component code.
+Components should do one thing and do it well.
+
+Resist the temptation to pack too much information into a component. As you progress you will get a better sense of how to minimize component code.
 
 > Think back to the Post component from the intro's class.
 
 #### Independent
 
-Components should increase cohesion and reduce coupling. Behavior in one component should not impact the behavior of another. In other words, components should not rely on one another.
+Components should increase cohesion and reduce coupling.
+
+Behavior in one component should not impact the behavior of another.
+
+In other words, components should rely on each other as little as possible.
 
 > But they should compliment one another, just like our Comment component did for Post in the intro's class.
 
@@ -34,20 +43,30 @@ Ideally, components should be short and condensed.
 
 #### Testable
 
-Because the same input will always produce the same output, components are easily unit testable.
+Because the same input will always produce the same output, components are easily unit-testable.
 
-## React Todo
-Alright it's time to build! We're going to be building this application from scratch! It won't be exactly like the repo above, but it'll be pretty close and follow much of the same structure.
+## React Todo Project
 
-> If you get behind, all code written today will be in the lesson plan. The error messages you'll get in terminal and in the chrome dev tools from React are usually very accurate and helpful, so please utilize them. Please keep questions pertinent to content. We should also note that some of the code snippets will be repetitions to reiterate points of learning. Some of them might just be updates to existing files. Some of them might be brand new content you have to add all of.
+We're going to be building this application from scratch!
+
+
+### Workflow Tips
+
+If you get behind, refer back to these notes.
+
+Pay attention to the error messages you'll get in terminal and in the chrome dev tools. Errors from React are usually very accurate and helpful, so please utilize them.
+
+Think critically about code snippets. Some of them will be repetitions, to reiterate important points. Some of them will update existing files. Some will have brand new content, and you'll add the entire snippet to your project.
+
+### Sprints
 
 [Sprint 0: Getting Started](sprints/Sprint0.md)
 
 [Sprint 1: React Router setup](sprints/Sprint1.md)
 
-[Sprint 2: Containers](sprints/Sprint2.md)
+[Sprint 2: Containers and Nested Components](sprints/Sprint2.md)
 
-[Sprint 3: Fetching data with Axios](sprints/Sprint3.md)
+[Sprint 3: Fetching data with AJAX](sprints/Sprint3.md)
 
 [Sprint 4: Creating Todos](sprints/Sprint4.md)
 
