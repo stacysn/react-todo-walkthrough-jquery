@@ -35,18 +35,17 @@ export default TodoModel
 
 3. Think critically about the steps in this sprint so far. Are you creating a new database model? Or is this a client-side "model" as in "MVC" or "MVVM"?
 
+4. Think critically about the `TodoModel` class.  What is a "static" method in a JavaScript class?
 
-> The Axios API is awesome! It's pretty intuitive! When we use the `all` method on our `TodoModel`, it will make a get request to our API for all todos. We return the request so that we can chain promises to it.
-
-Note also that `all()` is a static method. What does this mean? A static method can be called without there being an **instance** of the class containing the static method. This will allow us to call `all()` in the following way (without ***instantiating*** the class with new):
-
-```js
-let todos = TodoModel.all()
-```
+  > In the `TodoModel` class, `all()` is a static method. What does this mean? A static method can be called without an **instance** of the class. This will allow us to call `all()` in the following way (without ***instantiating*** the class with new): `let todos = TodoModel.all()`. [More on Static Methods in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Static_methods)
 
 
-**Class methods** don't require an instance of the class in order to be called, but an **instance method** does. [More on Static Methods in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Static_methods)
+5. Think critically about the `TodoModel.all` static method.  What is `axios`? What do you think it is doing in the last code snippet?
 
+  > Axios is a tool for making AJAX requests, and its API is pretty intuitive! When we use the `all` method on our `TodoModel`, it will make a `GET` request to the super-crud url for all todos. We tell `all` to return the request so that we can chain promises from it. (The promises will tell our code what happens next.)
+
+
+5. This file isn't connected to anything yet, o 
 We can't really test out the code in this file in isolation, so we must `import` it into our application in order to test it. The logical place to import this code is in the `TodosContainer` component.
 
 For now, let's toss this in the `TodosContainer`'s `render()` method: this isn't ultimately going to be where we want to call `TodoModel.all()`, but for testing purposes, it will suffice.
