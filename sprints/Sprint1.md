@@ -1,5 +1,7 @@
 ## Sprint 1: React Router
 
+<!-- @TODO possible reference https://github.com/ReactTraining/react-router/issues/4752 -->
+
 We're going to use React Router today!
 
 Client-side routing isn't strictly necessary for this application. However, client-side routing will let our single page app (SPA) keep the url in synch with what the user is seeing and doing as the page content changes. This is useful for deep linking and search engines!  
@@ -13,14 +15,14 @@ There is a lot to learn about React Router, and we'll just be scratching the sur
 
 0. If you followed the instructions from Sprint 0, you've already installed `react-router` as a dependency. If you get errors on the next few steps, confirm that you have it installed.
 
-1. Make a `config` folder and a `routes.js` file that will contain our routes:
+1. Make a `config` folder inside `src` and a `routes.js` file inside that. The `routes.js` file will contain the app's routes:
 
 ```bash
 $ mkdir src/config
 $ touch src/config/routes.js
 ```
 
-2. Fill in the contents our `routes.js` file:
+2. Fill in the contents the `routes.js` file:
 
 ```js
 // src/config/routes.js
@@ -48,7 +50,6 @@ module.exports = (
 // src/index.js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import {Router, browserHistory} from 'react-router'
 import routes from './config/routes.js'
 
