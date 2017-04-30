@@ -5,7 +5,7 @@ Create the React app. We're going to be using `react-router` version 3 for this,
 ```bash
 $ create-react-app my-react-todo
 $ cd my-react-todo
-$ npm install react-router@3.0.0
+$ npm install --save react-router@3.0.0
 $ npm start
 ```
 
@@ -13,7 +13,7 @@ Navigate to [`localhost:3000`](http://localhost:3000) to see the boilerplate `cr
 
 ### Step 1: Hello World
 
-1. Remove files you won't use. Specifically, remove the following files from the `src` folder:
+1. Remove files you won't need for this app. Specifically, remove the following files from the `src` folder:
 
 ```bash
 $ rm src/App.css
