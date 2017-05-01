@@ -10,6 +10,12 @@ class CreateTodoForm extends Component {
       todo: ''
     }
   }
+
+
+  onInputChange(event){
+    console.log('create todo input changed')
+  }
+
   render(){
     return (
       <div className='createForm todoForm'>
