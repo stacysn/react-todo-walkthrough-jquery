@@ -11,10 +11,19 @@ class CreateTodoForm extends Component {
     }
   }
 
-
   onInputChange(event){
     this.setState({
       todo: event.target.value
+    })
+  }
+
+  onFormSubmit(event){
+    console.log('form submitted')
+    event.preventDefault()
+    let newTodo = this.state.todo
+    this.props.createTodo(newTodo)
+    this.setState({
+      todo: ''
     })
   }
 
@@ -22,7 +31,8 @@ class CreateTodoForm extends Component {
     return (
       <div className='createForm todoForm'>
         <h2>Create Todo Here!</h2>
-        <form>
+
+        <form onSubmit={event => this.onFormSubmit(event)}>
           <input
             onChange={event => this.onInputChange(event)}
             placeholder='Write a todo here ...'
