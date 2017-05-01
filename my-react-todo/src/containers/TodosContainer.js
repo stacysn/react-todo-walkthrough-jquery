@@ -33,13 +33,17 @@ class TodosContainer extends Component {
       this.setState({newTodos})
     })
   }
+  deleteTodo(todo){
+    console.log('deleting todo', todo)
+  }
   render(){
     return (
       <div className='todosContainer'>
         <CreateTodoForm
           createTodo={this.createTodo.bind(this)} />
         <TodoList
-          todos={this.state.todos} />
+          todos={this.state.todos}
+          onDeleteTodo={this.deleteTodo} />
       </div>
     )
   }
