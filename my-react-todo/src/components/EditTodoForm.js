@@ -2,18 +2,29 @@
 import React, {Component} from 'react'
 
 class EditTodoForm extends Component {
-  onInputChange(event) {
+  constructor(){
+    // use Component's constructor
+    super()
+    // set initial state
+    this.state = {
+      updatedTodoBody: ''
+    }
+  }
+  onInputChange(event){
     console.log('changing a todo!')
+    this.setState({
+      updatedTodoBody: event.target.value
+    })
   }
   render(){
     return (
       <div className='editTodoForm'>
         <form>
-        <input
-          onChange={event => this.onInputChange(event)}
-          placeholder='Write updated todo here...'
-          type='text'
-          value='' />
+          <input
+            onChange={event => this.onInputChange(event)}
+            placeholder='Write updated todo here...'
+            type='text'
+            value={this.state.updatedTodoBody} />
           <button type='submit'>Update Todo!</button>
         </form>
       </div>
