@@ -16,6 +16,7 @@ class CreateTodoForm extends Component {
         <h2>Create Todo Here!</h2>
         <form>
           <input
+            onChange={event => this.onInputChange(event)}
             placeholder='Write a todo here ...'
             type='text'
             value={this.state.todo} />
