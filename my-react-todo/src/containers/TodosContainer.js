@@ -42,6 +42,13 @@ class TodosContainer extends Component {
         this.setState({todos})
     })
   }
+  updateTodo() {
+    console.log('updating todo in TodosContainer')
+    // access id of todo to be updated (param)
+    // access new info for the todo (param)
+    // call TodoModel.update to make AJAX call
+    // update this.state.todos based on response
+  }
   render(){
     return (
       <div className='todosContainer'>
