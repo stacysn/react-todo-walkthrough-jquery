@@ -21,10 +21,14 @@ class TodosContainer extends Component {
       })
     })
   }
+  createTodo(newBody) {
+    console.log('creating todo', newBody)
+  }
   render(){
     return (
       <div className='todosContainer'>
-        <CreateTodoForm />
+        <CreateTodoForm
+          createTodo={this.createTodo.bind(this)} />
         <TodoList
           todos={this.state.todos} />
       </div>
