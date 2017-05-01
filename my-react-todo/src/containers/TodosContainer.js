@@ -42,7 +42,7 @@ class TodosContainer extends Component {
         this.setState({todos})
     })
   }
-  updateTodo() {
+  updateTodo(newTodoBody, id) {
     console.log('updating todo in TodosContainer')
     // access id of todo to be updated (param)
     // access new info for the todo (param)
@@ -56,6 +56,7 @@ class TodosContainer extends Component {
           createTodo={this.createTodo.bind(this)} />
         <TodoList
           todos={this.state.todos}
+          onUpdateTodo={this.updateTodo.bind(this)} 
           onDeleteTodo={this.deleteTodo.bind(this)} />
       </div>
     )
