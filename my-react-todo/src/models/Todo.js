@@ -24,6 +24,14 @@ class TodoModel {
     })
     return request
   }
+  static update(newTodoBody, id){
+    let request = $.ajax({
+      url: `https://super-crud.herokuapp.com/todos/${id}`,
+      method: 'PUT',
+      data: { body: newTodoBody }
+    })
+    return request
+  }
 }
 
 export default TodoModel
