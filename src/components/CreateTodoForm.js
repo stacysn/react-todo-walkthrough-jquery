@@ -19,6 +19,7 @@ class CreateTodoForm extends Component {
     event.preventDefault()
     let newTodo = this.state.todo
     this.props.createTodo(newTodo)
+    console.log("PROPS", this.props);
     this.setState({
       todo: ''
     })
