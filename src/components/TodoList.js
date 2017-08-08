@@ -6,13 +6,15 @@ class TodoList extends Component {
     let todoArray = this.props.todos.map((todo) => {
       return (
         <Todo
-          key = {todo._id}
-          todo = {todo}
+          key={todo._id}
+          todo={todo}
+          onUpdateTodo={this.props.onUpdateTodo}
           onDeleteTodo={this.props.onDeleteTodo}/>
       )
     })
+
     return (
-      <div className = "todos">
+      <div className="todos">
         {todoArray}
       </div>
     )

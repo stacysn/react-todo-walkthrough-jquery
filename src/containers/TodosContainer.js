@@ -6,29 +6,29 @@ import CreateTodoForm from '../components/CreateTodoForm'
 class TodosContainer extends Component {
   constructor(){
     super()
-    this.state = {
+    this.state={
       todos: []
     }
   }
   componentDidMount(){
     this.fetchData()
   }
+
   fetchData(){
     TodoModel.all().then((res) => {
-      this.setState({
+      this.setState ({
         todos: res.todos
       })
     })
   }
 
   createTodo(newBody){
-    console.log("PRINT MEEE");
     let newTodo = {
       body: newBody,
       completed: false
     }
     TodoModel.create(newTodo).then((res) => {
-      console.log('created todo', res)
+      console.log('created todo', res);
       let todos = this.state.todos
       todos.push(res)
       this.setState({todos})
@@ -36,7 +36,7 @@ class TodosContainer extends Component {
   }
 
   deleteTodo(todo){
-    console.log("deleting todo", todo);
+    console.log('deleting todo', todo)
     TodoModel.delete(todo).then((res) => {
       let todos = this.state.todos.filter(function(todo){
         return todo._id !== res._id
@@ -45,13 +45,23 @@ class TodosContainer extends Component {
     })
   }
 
+  updateTodo(newTodoBody, id){
+    TodoModel.update(newTodoBody, id).then((res) => {
+      let targetTodo = this.state.todos.find((item) => {
+        return item._id === id;
+      })
+      targetTodo.body = res.body
+    })
+  }
+
   render(){
-    return (
-      <div className = 'TodosContainer'>
+    return(
+      <div className='todosContainer'>
         <CreateTodoForm
-          createTodo = {this.createTodo.bind(this)}/>
+          createTodo={this.createTodo.bind(this)}/>
         <TodoList
-          todos = {this.state.todos}
+          todos={this.state.todos}
+          onUpdateTodo={this.updateTodo.bind(this)}
           onDeleteTodo={this.deleteTodo.bind(this)}/>
       </div>
     )

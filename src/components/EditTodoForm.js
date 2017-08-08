@@ -3,13 +3,13 @@ import React, {Component} from 'react'
 class EditTodoForm extends Component {
   constructor(){
     super()
-    this.state = {
-      updatedTodoBody: ''
+    this.state={
+      updatedTodoBody: ""
     }
   }
 
-  onInputChange (event){
-    console.log('changing a todo!');
+  onInputChange(event){
+    console.log("changing a todo!");
     this.setState({
       updatedTodoBody: event.target.value
     })
@@ -17,8 +17,8 @@ class EditTodoForm extends Component {
 
   onFormSubmit(event){
     event.preventDefault()
-    console.log("edit todo form submitted");
-    this.props.onUpdateTodo(this.state.updatedTodoBody)
+    console.log('edit todo form submitted')
+    this.props.onUpdateTodo(this.state.updatedTodoBody, this.props.todo._id)
     this.setState({
       updatedTodoBody: ''
     })
@@ -26,14 +26,14 @@ class EditTodoForm extends Component {
 
   render(){
     return (
-      <div className = "EditTodoForm">
-        <form onSubmit = {event => this.onFormSubmit(event)}>
+      <div className='editTodoForm' data-todos-index={this.props.todo._id}>
+        <form onSubmit={event => this.onFormSubmit(event)}>
           <input
-            onChange = {event => this.onInputChange(event)}
-            placeholder = "Write updated todo here..."
-            type = "text"
-            value = {this.state.updatedTodoBody} />
-          <button type = 'submit' > Update Todo! </button>
+            onChange={event => this.onInputChange(event)}
+            placeholder="Write updated todo here ..."
+            type='text'
+            value={this.state.updatedTodoBody}/>
+          <button type='submit'>Update Todo! </button>
         </form>
       </div>
     )
